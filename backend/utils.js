@@ -48,7 +48,7 @@ export const mailgun = () =>
   });
 
 export const payOrderEmailTemplate = (order) => {
-  return `<h1>Thanks for shopping with us</h1>
+  return `<h1>Thanks for shopping with the Prof</h1>
   <p>
   Hi ${order.user.name},</p>
   <p>We have finished processing your order.</p>
@@ -62,16 +62,16 @@ export const payOrderEmailTemplate = (order) => {
   </thead>
   <tbody>
   ${order.orderItems
-    .map(
-      (item) => `
+      .map(
+        (item) => `
     <tr>
     <td>${item.name}</td>
     <td align="center">${item.quantity}</td>
     <td align="right"> $${item.price.toFixed(2)}</td>
     </tr>
   `
-    )
-    .join('\n')}
+      )
+      .join('\n')}
   </tbody>
   <tfoot>
   <tr>

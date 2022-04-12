@@ -1,4 +1,4 @@
-# MERN AMAZONA
+Professor Kennabis
 
 ![amazona](/frontend/public/images/amazona.jpg)
 
