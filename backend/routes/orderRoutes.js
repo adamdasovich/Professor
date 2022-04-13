@@ -3,7 +3,7 @@ import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 import User from '../models/userModel.js';
 import Product from '../models/productModel.js';
-import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from '../utils.js';
+import { isAuth, isAdmin, payOrderEmailTemplate, mailgun } from '../utils.js';
 
 const orderRouter = express.Router();
 
@@ -136,7 +136,6 @@ orderRouter.put(
         update_time: req.body.update_time,
         email_address: req.body.email_address,
       };
-
       const updatedOrder = await order.save();
       mailgun()
         .messages()
