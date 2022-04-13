@@ -34,6 +34,7 @@ import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
+import Chat from './components/Chat';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -264,6 +265,7 @@ function App() {
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
+          <Chat />
         </main>
         <footer>
           <div className="text-center">All rights reserved</div>
