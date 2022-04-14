@@ -86,7 +86,7 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>Professor Kennabis</Navbar.Brand>
+                <Navbar.Brand>Professor Kennabis!</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
