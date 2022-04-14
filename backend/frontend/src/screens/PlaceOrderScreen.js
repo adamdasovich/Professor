@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,6 +11,7 @@ import { getError } from '../utils';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
+import { axiosIntance } from '../config';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -48,7 +48,7 @@ export default function PlaceOrderScreen() {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
 
-      const { data } = await Axios.post(
+      const { data } = await axiosIntance.post(
         '/api/orders',
         {
           orderItems: cart.cartItems,

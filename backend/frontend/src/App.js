@@ -22,7 +22,6 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import Button from 'react-bootstrap/Button';
 import { getError } from './utils';
-import axios from 'axios';
 import SearchBox from './components/SearchBox';
 import SearchScreen from './screens/SearchScreen';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -35,6 +34,7 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
 import Chat from './components/Chat';
+import { axiosIntance } from './config';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axiosIntance.get(`/api/products/categories`);
         setCategories(data);
       } catch (err) {
         toast.error(getError(err));

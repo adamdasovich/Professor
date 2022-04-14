@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext, useEffect, useReducer, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -16,6 +15,7 @@ import { getError } from '../utils';
 import { Store } from '../Store';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { toast } from 'react-toastify';
+import { axiosIntance } from '../config';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -59,7 +59,7 @@ function ProductScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get(`/api/products/slug/${slug}`);
+        const result = await axiosIntance.get(`/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
@@ -73,7 +73,7 @@ function ProductScreen() {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
+    const { data } = await axiosIntance.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
@@ -92,7 +92,7 @@ function ProductScreen() {
       return;
     }
     try {
-      const { data } = await axios.post(
+      const { data } = await axiosIntance.post(
         `/api/products/${product._id}/reviews`,
         { rating, comment, name: userInfo.name },
         {
